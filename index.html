@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mevuh's Hair Care Routine 🌿</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#2d5a27;--sage:#7a9e6e;--mint:#b8d4a8;--cream:#faf7f0;
+  --gold:#c9a96e;--warm:#f5efe6;--dark:#1a2e16;--text:#2c3e1a;
+  --rose:#c8a0a0;--soft:#e8f0e4;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--text);font-family:'Jost',sans-serif;overflow-x:hidden;}
+
+/* HEADER */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(160deg,#1a2e16 0%,#2d5a27 40%,#3d7a35 70%,#4a9040 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:40px 20px;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 20%,rgba(201,169,110,.12) 0%,transparent 50%),
+             radial-gradient(ellipse at 70% 80%,rgba(122,158,110,.15) 0%,transparent 50%);
+}
+/* floating leaves */
+.leaf{position:absolute;pointer-events:none;opacity:0;animation:leaffall linear infinite;}
+@keyframes leaffall{
+  0%{transform:translateY(-60px) rotate(0deg) translateX(0);opacity:0;}
+  10%{opacity:.6;}90%{opacity:.4;}
+  100%{transform:translateY(110vh) rotate(720deg) translateX(40px);opacity:0;}
+}
+.hero-badge{
+  font-family:'Jost',sans-serif;font-weight:200;font-size:11px;
+  letter-spacing:.6em;text-transform:uppercase;color:rgba(201,169,110,.8);
+  margin-bottom:20px;z-index:2;
+  animation:fadeUp 1s ease .3s both;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;font-size:clamp(38px,8vw,80px);
+  color:#fff;line-height:1.1;z-index:2;margin-bottom:12px;
+  animation:fadeUp 1.2s ease .5s both;
+}
+.hero-title em{font-style:italic;color:var(--mint);}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(16px,3vw,22px);color:rgba(255,255,255,.6);
+  z-index:2;margin-bottom:32px;letter-spacing:.05em;
+  animation:fadeUp 1.2s ease .7s both;
+}
+.hero-tags{
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;z-index:2;
+  animation:fadeUp 1s ease 1s both;
+}
+.htag{
+  padding:8px 18px;border-radius:30px;border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;backdrop-filter:blur(4px);
+}
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2;
+  color:rgba(255,255,255,.3);font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+  animation:fadeUp 1s ease 1.5s both;
+}
+.scroll-dot{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:scrollpulse 2s ease-in-out infinite;}
+@keyframes scrollpulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION WRAPPER */
+.wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+
+/* SECTION */
+.sec{padding:80px 0;border-bottom:1px solid rgba(45,90,39,.08);}
+.sec:last-child{border-bottom:none;}
+
+.sec-label{
+  font-family:'Jost',sans-serif;font-weight:200;font-size:10px;
+  letter-spacing:.6em;text-transform:uppercase;color:var(--sage);
+  margin-bottom:10px;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);
+  color:var(--dark);line-height:1.15;margin-bottom:8px;
+}
+.sec-title em{font-style:italic;color:var(--green);}
+.sec-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(15px,2.5vw,18px);color:rgba(44,62,26,.55);
+  margin-bottom:36px;line-height:1.7;
+}
+.gold-line{width:50px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:28px;}
+
+/* OVERVIEW CARDS */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:40px;}
+.ov-card{
+  background:var(--warm);border-radius:16px;padding:24px 18px;text-align:center;
+  border:1px solid rgba(45,90,39,.08);transition:all .3s;position:relative;overflow:hidden;
+}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--mint));}
+.ov-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(45,90,39,.1);}
+.ov-icon{font-size:32px;margin-bottom:10px;display:block;}
+.ov-card h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--dark);margin-bottom:5px;}
+.ov-card p{font-size:11px;color:rgba(44,62,26,.5);line-height:1.5;letter-spacing:.02em;}
+
+/* ROUTINE TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tday{
+  display:grid;grid-template-columns:120px 1fr;gap:0;
+  position:relative;
+}
+.tday::before{
+  content:'';position:absolute;left:119px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--mint),rgba(184,212,168,.2));
+}
+.tday-label{
+  padding:28px 20px 28px 0;text-align:right;
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(13px,2vw,15px);color:var(--sage);line-height:1.3;
+  position:relative;
+}
+.tday-label::after{
+  content:'';position:absolute;right:-5px;top:34px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--green);border:2px solid var(--cream);
+  box-shadow:0 0 0 3px rgba(45,90,39,.15);
+}
+.tday-content{padding:24px 0 24px 28px;}
+.tday-content h3{
+  font-family:'Playfair Display',serif;font-size:clamp(17px,3vw,22px);
+  color:var(--dark);margin-bottom:12px;
+}
+.tday-content .badge{
+  display:inline-block;padding:3px 12px;border-radius:20px;
+  font-size:10px;letter-spacing:.25em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.badge-daily{background:rgba(45,90,39,.1);color:var(--green);}
+.badge-weekly{background:rgba(201,169,110,.15);color:#8a6a20;}
+.badge-monthly{background:rgba(200,160,160,.2);color:#7a4040;}
+
+.steps{display:flex;flex-direction:column;gap:10px;}
+.step{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--warm);border-radius:12px;padding:14px 16px;
+  border:1px solid rgba(45,90,39,.06);transition:all .3s;
+}
+.step:hover{background:#fff;box-shadow:0 4px 20px rgba(45,90,39,.08);}
+.step-num{
+  min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--sage));
+  color:#fff;font-size:11px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.step-body h4{font-family:'Jost',sans-serif;font-weight:400;font-size:14px;color:var(--dark);margin-bottom:3px;}
+.step-body p{font-size:12px;color:rgba(44,62,26,.55);line-height:1.6;}
+.step-body em{color:var(--green);font-style:italic;}
+.step-body strong{color:var(--dark);font-weight:500;}
+
+/* FOOD SECTION */
+.food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.food-card{
+  background:#fff;border-radius:18px;overflow:hidden;
+  border:1px solid rgba(45,90,39,.08);transition:all .35s;
+}
+.food-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(45,90,39,.12);}
+.food-head{
+  padding:20px;background:linear-gradient(135deg,var(--green),var(--sage));
+  display:flex;align-items:center;gap:14px;
+}
+.food-emoji{font-size:32px;}
+.food-head-text h3{font-family:'Playfair Display',serif;font-size:17px;color:#fff;}
+.food-head-text p{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.05em;}
+.food-body{padding:18px 20px;}
+.food-items{display:flex;flex-direction:column;gap:8px;}
+.fi{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(45,90,39,.06);}
+.fi:last-child{border-bottom:none;}
+.fi-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);margin-top:6px;flex-shrink:0;}
+.fi-text{font-size:13px;color:var(--text);line-height:1.5;}
+.fi-text span{display:block;font-size:11px;color:rgba(44,62,26,.45);margin-top:1px;}
+
+/* OILS SECTION */
+.oils-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.oil-card{
+  border-radius:16px;padding:22px;text-align:center;
+  border:1px solid rgba(45,90,39,.1);background:var(--soft);
+  transition:all .35s;position:relative;
+}
+.oil-card:hover{background:#fff;box-shadow:0 12px 36px rgba(45,90,39,.1);}
+.oil-icon{font-size:36px;margin-bottom:10px;display:block;}
+.oil-name{font-family:'Playfair Display',serif;font-size:16px;color:var(--dark);margin-bottom:6px;}
+.oil-benefit{font-size:12px;color:var(--sage);font-weight:500;letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase;}
+.oil-desc{font-size:12px;color:rgba(44,62,26,.55);line-height:1.6;}
+.oil-how{
+  margin-top:10px;font-size:11px;color:rgba(44,62,26,.4);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+}
+
+/* TIPS BOX */
+.tip-box{
+  background:linear-gradient(135deg,var(--dark),var(--green));
+  border-radius:20px;padding:36px;color:#fff;position:relative;overflow:hidden;margin:40px 0;
+}
+.tip-box::before{
+  content:'✦';position:absolute;right:24px;top:16px;
+  font-size:80px;opacity:.06;font-family:'Playfair Display',serif;
+}
+.tip-box h3{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,28px);margin-bottom:20px;color:var(--mint);}
+.tips-list{display:flex;flex-direction:column;gap:12px;}
+.tip-item{display:flex;align-items:flex-start;gap:12px;}
+.tip-bullet{font-size:16px;flex-shrink:0;margin-top:1px;}
+.tip-item p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;}
+.tip-item strong{color:var(--mint);font-weight:400;}
+
+/* WARNINGS */
+.warn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:28px;}
+.warn-card{
+  border-radius:14px;padding:18px;
+  border:1px solid rgba(200,100,100,.15);background:rgba(200,100,100,.04);
+}
+.warn-card.good{border-color:rgba(45,90,39,.15);background:rgba(45,90,39,.04);}
+.warn-card h4{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;}
+.warn-card.good h4{color:var(--green);}
+.warn-card h4:not(.good h4){color:#c05050;}
+.warn-items{display:flex;flex-direction:column;gap:6px;}
+.wi{font-size:12px;color:rgba(44,62,26,.65);line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+
+/* SCHEDULE TABLE */
+.schedule{width:100%;border-radius:16px;overflow:hidden;border:1px solid rgba(45,90,39,.1);}
+.sch-head{background:linear-gradient(135deg,var(--green),var(--sage));display:grid;grid-template-columns:130px 1fr 1fr;padding:14px 20px;gap:10px;}
+.sch-head span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:300;}
+.sch-row{display:grid;grid-template-columns:130px 1fr 1fr;padding:14px 20px;gap:10px;border-bottom:1px solid rgba(45,90,39,.06);background:#fff;transition:background .2s;}
+.sch-row:last-child{border-bottom:none;}
+.sch-row:hover{background:var(--soft);}
+.sch-day{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--green);}
+.sch-task{font-size:13px;color:var(--text);line-height:1.5;}
+.sch-prod{font-size:11px;color:var(--sage);line-height:1.5;}
+
+/* PROGRESS TRACKER */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.track-card{
+  background:var(--warm);border-radius:14px;padding:20px;text-align:center;
+  border:1px solid rgba(45,90,39,.08);
+}
+.track-circle{
+  width:64px;height:64px;border-radius:50%;
+  border:3px solid var(--mint);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 10px;font-family:'Playfair Display',serif;font-size:18px;color:var(--green);
+  background:#fff;
+}
+.track-label{font-size:11px;color:rgba(44,62,26,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.track-value{font-family:'Playfair Display',serif;font-size:13px;color:var(--dark);}
+
+/* FOOTER */
+.footer{
+  background:linear-gradient(160deg,var(--dark),var(--green));
+  padding:60px 20px;text-align:center;color:#fff;
+}
+.footer h2{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,40px);margin-bottom:12px;color:var(--mint);}
+.footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,2.5vw,18px);color:rgba(255,255,255,.5);margin-bottom:6px;}
+.footer .sig{color:var(--gold);font-size:20px;margin-top:20px;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.4,0,.2,1);}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* NAV */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:14px 24px;display:flex;align-items:center;justify-content:space-between;
+  transition:all .4s;
+}
+#nav.scrolled{background:rgba(250,247,240,.95);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(45,90,39,.08);}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:#fff;transition:color .4s;}
+#nav.scrolled .nav-logo{color:var(--dark);}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:all .4s;}
+#nav.scrolled .nav-links a{color:rgba(44,62,26,.5);}
+.nav-links a:hover{color:var(--gold);}
+
+@media(max-width:600px){
+  .tday{grid-template-columns:90px 1fr;}
+  .tday::before{left:89px;}
+  .sch-head,.sch-row{grid-template-columns:90px 1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <span class="nav-logo">Mevuh's Routine</span>
+  <div class="nav-links">
+    <a href="#routine">Routine</a>
+    <a href="#foods">Foods</a>
+    <a href="#oils">Oils</a>
+    <a href="#tips">Tips</a>
+    <a href="#schedule">Schedule</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div id="leaves"></div>
+  <p class="hero-badge">🌿 Prepared with love by Basit — for Mevuh</p>
+  <h1 class="hero-title">Your Complete<br><em>Hair Care</em> Guide</h1>
+  <p class="hero-sub">A personalised routine for beautiful, healthy, strong hair</p>
+  <div class="hero-tags">
+    <span class="htag">🧴 Daily Routine</span>
+    <span class="htag">🥗 Hair Foods</span>
+    <span class="htag">💧 Best Oils</span>
+    <span class="htag">⚠️ Do's & Don'ts</span>
+    <span class="htag">📅 Weekly Schedule</span>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll to begin</span>
+    <div class="scroll-dot"></div>
+  </div>
+</div>
+
+
+<!-- LOVE NOTE -->
+<div style="background:linear-gradient(135deg,#1a2e16,#2d5a27);padding:48px 20px;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,169,110,.08),transparent 70%);"></div>
+  <div style="max-width:620px;margin:0 auto;position:relative;z-index:2;">
+    <p style="font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:rgba(201,169,110,.6);font-family:Jost,sans-serif;font-weight:200;margin-bottom:16px;">✦ a note from Basit ✦</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,3.5vw,26px);color:rgba(255,255,255,.85);line-height:1.85;">
+      &ldquo;Mevuh, I made this for you because you deserve to feel as beautiful on the outside as you already are on the inside. Take care of yourself — not just your hair, but all of you. Because you matter more than you know.&rdquo;
+    </p>
+    <p style="margin-top:18px;font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--gold);">— Basit 💚</p>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="sec" id="overview">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ At a glance ✦</p>
+      <h2 class="sec-title">Your Hair Health<br><em>Overview</em></h2>
+      <p class="sec-sub">A complete system — daily care, weekly treatments, monthly deep care & the right foods to eat.</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="overview-grid reveal">
+      <div class="ov-card"><span class="ov-icon">🌅</span><h3>Daily Routine</h3><p>Morning & night habits that protect and nourish your hair every single day</p></div>
+      <div class="ov-card"><span class="ov-icon">📅</span><h3>Weekly Treatments</h3><p>Deep oil massage, hair masks & wash routine — once or twice a week</p></div>
+      <div class="ov-card"><span class="ov-icon">🌙</span><h3>Monthly Care</h3><p>Trim, deep conditioning & scalp reset for long-term growth & shine</p></div>
+      <div class="ov-card"><span class="ov-icon">🥑</span><h3>Hair Foods</h3><p>What to eat daily to boost hair growth, reduce fall & add natural shine</p></div>
+      <div class="ov-card"><span class="ov-icon">💧</span><h3>Best Oils</h3><p>Natural oils that are proven to improve texture, strength & scalp health</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY ROUTINE -->
+<div class="sec" id="routine">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ Day by day ✦</p>
+      <h2 class="sec-title">Your Daily<br><em>Hair Routine</em></h2>
+      <p class="sec-sub">Simple steps — morning and night — that build healthy hair over time.</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- MORNING -->
+      <div class="tday reveal">
+        <div class="tday-label">☀️<br>Every<br>Morning</div>
+        <div class="tday-content">
+          <span class="badge badge-daily">Daily</span>
+          <h3>Morning Hair Care</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Scalp Massage — 2 mins</h4><p>Use your fingertips (not nails) to gently massage your scalp in circular motions. This <em>boosts blood circulation</em> and wakes up hair follicles for better growth.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Detangle Gently</h4><p>Use a <strong>wide-tooth comb</strong> starting from the ends, working up. Never pull from the roots — this breaks hair and causes unnecessary fall.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Light Leave-in or Hair Serum (optional)</h4><p>If your hair feels dry, apply a tiny amount of <em>argan oil or coconut oil</em> to your ends only — never on the scalp.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Loose Style — No Tight Ties</h4><p>Avoid tight ponytails or buns daily. Tight styles <em>cause breakage and hairline damage</em>. Use a satin scrunchie if tying hair.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NIGHT -->
+      <div class="tday reveal">
+        <div class="tday-label">🌙<br>Every<br>Night</div>
+        <div class="tday-content">
+          <span class="badge badge-daily">Daily</span>
+          <h3>Nighttime Hair Care</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Detangle Before Bed</h4><p>Always detangle before sleep. Sleeping with tangled hair causes major breakage from tossing and turning through the night.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Loose Braid or Bun</h4><p>Put hair in a <em>loose braid</em> before sleeping. This reduces friction and prevents split ends and tangles overnight.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Use a Satin/Silk Pillowcase</h4><p>Cotton absorbs moisture and causes friction. A <strong>satin or silk pillowcase</strong> keeps hair smooth, reduces frizz, and retains moisture.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Hydrate Your Body</h4><p>Drink at least <em>8 glasses of water</em> daily. Dehydration directly affects hair dryness and breakage from the inside.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WASH DAYS -->
+      <div class="tday reveal">
+        <div class="tday-label">💧<br>2–3x<br>Per Week</div>
+        <div class="tday-content">
+          <span class="badge badge-weekly">Weekly</span>
+          <h3>Wash Day Routine</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Pre-Wash Oil Treatment (30 min before)</h4><p>Apply <em>warm coconut oil or castor oil</em> to your scalp and hair. Leave 30 mins minimum — this protects hair from shampoo stripping.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Shampoo — Scalp Only</h4><p>Apply shampoo only to your scalp, not the lengths. Let water rinse it through the ends. Use a <strong>sulphate-free, gentle shampoo</strong>. Over-washing strips natural oils.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Conditioner — Lengths & Ends Only</h4><p>Apply conditioner from mid-lengths to ends. Leave for <em>3–5 minutes</em> then rinse with cool water. Cool water seals the cuticle for shine.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Pat Dry — Never Rub</h4><p>Use a microfibre towel or old cotton T-shirt. <strong>Gently pat and squeeze</strong> — never rub. Rubbing causes frizz and breakage when hair is most fragile.</p></div></div>
+            <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Air Dry When Possible</h4><p>Allow hair to air dry. If using a blow dryer, always use a <em>heat protectant spray</em> first and keep on the lowest heat setting.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEKLY OIL -->
+      <div class="tday reveal">
+        <div class="tday-label">🌿<br>Once<br>Per Week</div>
+        <div class="tday-content">
+          <span class="badge badge-weekly">Weekly</span>
+          <h3>Deep Oil Massage Treatment</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Warm Your Oil</h4><p>Warm 2–3 tablespoons of your chosen oil (coconut, castor, olive, or a blend) slightly in a bowl of hot water. <em>Warm oil penetrates deeper</em> into the scalp.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Section & Apply</h4><p>Part hair into 4 sections. Apply oil directly to scalp in each parting, then massage gently with fingertips for <strong>10–15 minutes</strong>.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Wrap in Warm Towel (Hot Oil Wrap)</h4><p>Wrap hair in a warm towel for <em>30–60 minutes</em> or leave overnight. The heat helps the oil absorb deeply and strengthens follicles.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Wash Out Thoroughly</h4><p>Follow with your regular wash day routine to remove the oil completely. If needed, double shampoo your scalp.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HAIR MASK -->
+      <div class="tday reveal">
+        <div class="tday-label">✨<br>Every<br>2 Weeks</div>
+        <div class="tday-content">
+          <span class="badge badge-weekly">Bi-Weekly</span>
+          <h3>DIY Hair Mask Treatments</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">★</div><div class="step-body"><h4>Egg + Olive Oil Mask (Protein Mask)</h4><p>Mix <em>1 egg + 2 tbsp olive oil</em>. Apply root to tip. Leave 30 mins. Rinse with cool water (not hot — egg scrambles!). Strengthens and reduces breakage.</p></div></div>
+            <div class="step"><div class="step-num">★</div><div class="step-body"><h4>Banana + Honey Mask (Moisture Mask)</h4><p>Blend <em>1 ripe banana + 1 tbsp honey + 1 tbsp coconut oil</em>. Apply to hair. Leave 30–45 mins. Makes hair incredibly soft and shiny.</p></div></div>
+            <div class="step"><div class="step-num">★</div><div class="step-body"><h4>Yoghurt + Lemon Scalp Mask</h4><p>Mix <em>4 tbsp plain yoghurt + 1 tsp lemon juice</em>. Apply to scalp only. Leave 20 mins. Excellent for dandruff, itchy scalp, and balancing scalp pH.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MONTHLY -->
+      <div class="tday reveal">
+        <div class="tday-label">📅<br>Once<br>Per Month</div>
+        <div class="tday-content">
+          <span class="badge badge-monthly">Monthly</span>
+          <h3>Monthly Reset Routine</h3>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Trim Your Ends</h4><p>Even a <em>tiny ½ cm trim</em> removes split ends and stops them from travelling up the hair shaft. Healthy ends = longer-looking hair.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Clarifying Wash</h4><p>Once a month use a <strong>clarifying shampoo</strong> to remove buildup from products and hard water minerals from the scalp.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Deep Condition for 1 Hour</h4><p>Apply a rich conditioner or hair mask, cover with a shower cap, and leave for <em>60 minutes</em>. This restores moisture lost from the whole month.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOODS -->
+<div class="sec" id="foods" style="background:var(--soft);">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ Eat for your hair ✦</p>
+      <h2 class="sec-title">Best Foods for<br><em>Hair Growth & Shine</em></h2>
+      <p class="sec-sub">What you eat shows in your hair. These foods are scientifically proven to improve hair strength, thickness, and shine from within.</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="food-grid reveal">
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🥚</span><div class="food-head-text"><h3>Eggs</h3><p>Biotin + Protein powerhouse</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Rich in Biotin (Vitamin B7) — the most important vitamin for hair growth<span>Deficiency directly causes hair thinning and loss</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">High in protein — hair is made of keratin (a protein)<span>Eat 1–2 eggs daily for noticeable difference in 4–6 weeks</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Contains zinc & selenium — fights scalp dryness and dandruff<span>Best eaten boiled or poached (not fried)</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🐟</span><div class="food-head-text"><h3>Fatty Fish</h3><p>Omega-3 & Vitamin D</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Salmon, sardines, mackerel — loaded with Omega-3 fatty acids<span>Omega-3 nourishes hair follicles and promotes growth</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Vitamin D in fish is linked directly to hair follicle cycling<span>Low Vitamin D = hair shedding</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Eat 2–3 times per week<span>If vegetarian: flaxseeds, chia seeds & walnuts for Omega-3</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🥬</span><div class="food-head-text"><h3>Leafy Greens</h3><p>Iron, Folate & Vitamins A/C</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Spinach, kale, methi (fenugreek leaves) — iron-rich<span>Iron deficiency is the #1 cause of hair fall in women</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Vitamin A in greens helps produce sebum — your scalp's natural conditioner<span>Keeps scalp moisturised and healthy</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Folate helps create red blood cells that carry oxygen to follicles<span>Have a handful of greens daily — in salad, roti, or cooked</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🥜</span><div class="food-head-text"><h3>Nuts & Seeds</h3><p>Zinc, Vitamin E & Selenium</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Almonds — rich in Vitamin E, a powerful antioxidant for scalp health<span>10–12 soaked almonds every morning is ideal</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Walnuts — high in Omega-3 and Biotin for hair thickness<span>Eat a small handful daily</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Sunflower seeds, pumpkin seeds — zinc for hair growth<span>Sprinkle on yoghurt or eat as a snack</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🫘</span><div class="food-head-text"><h3>Lentils & Legumes</h3><p>Iron, Protein & Biotin</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Dal (lentils), chickpeas, kidney beans — plant protein for hair strength<span>Perfect if you don't eat much meat</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">High in iron + zinc + folate — all critical for hair growth<span>Have dal at least once daily — it's a complete hair food</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Fenugreek seeds (methi dana) — soaked overnight and eaten<span>Reduces hair fall significantly within weeks</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🫐</span><div class="food-head-text"><h3>Berries & Fruits</h3><p>Vitamin C & Antioxidants</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Blueberries, strawberries — loaded with Vitamin C<span>Vitamin C helps absorb iron AND produces collagen for hair structure</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Amla (Indian gooseberry) — one of the best hair superfoods<span>Eat raw, pickled, or drink amla juice daily. Incredible for hair quality.</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Guava, citrus fruits — high Vitamin C<span>Have a fruit with every meal to maximise iron absorption</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🧀</span><div class="food-head-text"><h3>Dairy & Protein</h3><p>Casein Protein & Calcium</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Milk, yoghurt, paneer — rich in casein and whey protein<span>Directly feeds hair follicles with amino acids for growth</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Plain yoghurt — probiotic, improves gut health which affects hair<span>Apply to scalp as a mask too for dandruff control</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Drink a glass of milk at night<span>Calcium supports the follicle root and strengthens the hair shaft</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-head"><span class="food-emoji">🫚</span><div class="food-head-text"><h3>Healthy Fats</h3><p>Moisture from within</p></div></div>
+        <div class="food-body"><div class="food-items">
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Avocado — Vitamin E + healthy fats that moisturise from inside<span>Have ½ an avocado a few times per week</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Olive oil in cooking — oleic acid prevents hair dryness<span>Replace refined oil with olive or coconut oil for cooking</span></div></div>
+          <div class="fi"><div class="fi-dot"></div><div class="fi-text">Ghee (in moderation) — traditional Ayurvedic hair nourisher<span>A small amount of pure ghee daily supports scalp health</span></div></div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- SUPPLEMENTS -->
+    <div class="tip-box reveal" style="margin-top:36px;">
+      <h3>💊 Supplements Worth Considering</h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,.45);margin-bottom:16px;">Always consult a doctor before starting supplements.</p>
+      <div class="tips-list">
+        <div class="tip-item"><span class="tip-bullet">🌟</span><p><strong>Biotin (Vitamin B7)</strong> — 2500–5000 mcg daily. The most widely recommended supplement for hair growth and thickness.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🌟</span><p><strong>Iron + Vitamin C</strong> — if you experience hair fall, low iron is often the cause. Take iron with Vitamin C for better absorption.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🌟</span><p><strong>Vitamin D3</strong> — especially if you're indoors most of the day. Very commonly deficient and directly linked to hair shedding.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🌟</span><p><strong>Omega-3 Fish Oil</strong> — if you don't eat much fish, a fish oil supplement adds lustre and reduces hair dryness noticeably.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OILS -->
+<div class="sec" id="oils">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ Nature's best ✦</p>
+      <h2 class="sec-title">Best Oils for<br><em>Your Hair</em></h2>
+      <p class="sec-sub">These are the most effective, proven natural oils — what they do and exactly how to use them.</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="oils-grid reveal">
+      <div class="oil-card"><span class="oil-icon">🥥</span><div class="oil-name">Coconut Oil</div><div class="oil-benefit">All-rounder</div><p class="oil-desc">The only oil that penetrates the hair shaft. Reduces protein loss, prevents breakage, adds deep shine and controls frizz.</p><p class="oil-how">Warm slightly. Apply to scalp & hair. Leave 30 min–overnight. Use 1–2x week.</p></div>
+      <div class="oil-card"><span class="oil-icon">🫒</span><div class="oil-name">Castor Oil</div><div class="oil-benefit">Growth Booster</div><p class="oil-desc">Ricinoleic acid improves blood flow to scalp. Thickens hair, fills in sparse areas, and dramatically reduces hair fall over 6–8 weeks.</p><p class="oil-how">Mix with coconut oil (50:50). Massage scalp. Leave 2–4 hours. Use 1x week.</p></div>
+      <div class="oil-card"><span class="oil-icon">🌾</span><div class="oil-name">Argan Oil</div><div class="oil-benefit">Shine & Softness</div><p class="oil-desc">"Liquid gold." Rich in Vitamin E and fatty acids. Makes hair incredibly silky, tames frizz, and protects from heat and humidity.</p><p class="oil-how">2–3 drops on palms. Apply to damp hair ends only. Use daily as leave-in.</p></div>
+      <div class="oil-card"><span class="oil-icon">🌿</span><div class="oil-name">Rosemary Oil</div><div class="oil-benefit">Stimulates Growth</div><p class="oil-desc">Studies show it works as well as minoxidil for hair regrowth. Activates dormant follicles and significantly reduces shedding.</p><p class="oil-how">5–6 drops in 2 tbsp coconut oil. Massage scalp. Leave 1–2 hours. Use 2x week.</p></div>
+      <div class="oil-card"><span class="oil-icon">🌸</span><div class="oil-name">Olive Oil</div><div class="oil-benefit">Deep Conditioning</div><p class="oil-desc">Excellent emollient. Softens coarse, dry hair and adds moisture. Contains Vitamin E and squalene — great for dry scalp too.</p><p class="oil-how">Warm and apply generously. Wrap in towel 1 hour. Use as monthly deep treatment.</p></div>
+      <div class="oil-card"><span class="oil-icon">🌻</span><div class="oil-name">Onion Seed Oil (Kalonji)</div><div class="oil-benefit">Fall Reduction</div><p class="oil-desc">Used in traditional medicine for centuries. Thymoquinone in kalonji significantly reduces hair fall and encourages regrowth.</p><p class="oil-how">Massage into scalp. Leave 1–2 hours or overnight. Wash out. Use 2x week.</p></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- LOVE DIVIDER -->
+<div style="background:linear-gradient(160deg,#fff8f0,#faf5ec);padding:56px 20px;text-align:center;border-top:1px solid rgba(201,169,110,.1);border-bottom:1px solid rgba(201,169,110,.1);">
+  <div style="max-width:560px;margin:0 auto;">
+    <p style="font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--sage);font-family:Jost,sans-serif;font-weight:200;margin-bottom:16px;">✦ a reminder ✦</p>
+    <p style="font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,32px);color:var(--dark);line-height:1.4;margin-bottom:14px;">
+      Take care of yourself, Mevuh.<br><em style="font-style:italic;color:var(--green);">You are so deeply loved.</em>
+    </p>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,2.5vw,17px);color:rgba(44,62,26,.5);line-height:1.85;">
+      Every drop of oil, every good meal, every extra glass of water — Basit wants all of that for you. Because when you thrive, everything feels right. 💚
+    </p>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="sec" id="tips" style="background:var(--soft);">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ Important ✦</p>
+      <h2 class="sec-title">Do's & Don'ts for<br><em>Healthy Hair</em></h2>
+      <p class="sec-sub">Small habits make the biggest difference. These are the most important things to follow — and avoid.</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="warn-grid reveal">
+      <div class="warn-card good">
+        <h4 style="color:var(--green);">✅ Always Do These</h4>
+        <div class="warn-items">
+          <div class="wi"><span>🌿</span><span>Sleep on a satin or silk pillowcase every night</span></div>
+          <div class="wi"><span>🌿</span><span>Drink 8+ glasses of water daily for scalp hydration</span></div>
+          <div class="wi"><span>🌿</span><span>Detangle from ends to roots — always start at the bottom</span></div>
+          <div class="wi"><span>🌿</span><span>Use cool or lukewarm water for the final rinse</span></div>
+          <div class="wi"><span>🌿</span><span>Pat dry with a microfibre towel after washing</span></div>
+          <div class="wi"><span>🌿</span><span>Massage scalp for 2 mins daily to boost circulation</span></div>
+          <div class="wi"><span>🌿</span><span>Trim ends every 6–8 weeks to prevent split ends spreading</span></div>
+          <div class="wi"><span>🌿</span><span>Cover hair with a light scarf in harsh sun or pollution</span></div>
+          <div class="wi"><span>🌿</span><span>Eat a protein-rich meal at least once a day</span></div>
+          <div class="wi"><span>🌿</span><span>Allow hair to air dry as often as possible</span></div>
+        </div>
+      </div>
+      <div class="warn-card">
+        <h4 style="color:#c05050;">❌ Never Do These</h4>
+        <div class="warn-items">
+          <div class="wi"><span>🚫</span><span>Never rub hair with a towel — always pat gently</span></div>
+          <div class="wi"><span>🚫</span><span>Never wash hair with very hot water — it strips natural oils</span></div>
+          <div class="wi"><span>🚫</span><span>Never brush wet hair — use wide-tooth comb only when damp</span></div>
+          <div class="wi"><span>🚫</span><span>Never sleep with hair tied tightly — causes breakage</span></div>
+          <div class="wi"><span>🚫</span><span>Avoid sulphate shampoos — they are too harsh and strip hair</span></div>
+          <div class="wi"><span>🚫</span><span>Avoid heat styling (straighteners, curlers) without heat protectant</span></div>
+          <div class="wi"><span>🚫</span><span>Don't over-wash — 2–3 times per week maximum</span></div>
+          <div class="wi"><span>🚫</span><span>Avoid tight hairstyles daily — they damage the hairline</span></div>
+          <div class="wi"><span>🚫</span><span>Never apply conditioner to the scalp — only lengths and ends</span></div>
+          <div class="wi"><span>🚫</span><span>Avoid crash diets — sudden nutrition drops cause major hair fall</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box reveal">
+      <h3>🧠 Lifestyle Tips That Directly Affect Hair</h3>
+      <div class="tips-list">
+        <div class="tip-item"><span class="tip-bullet">😴</span><p><strong>Sleep 7–8 hours</strong> — hair grows while you sleep. Chronic sleep deprivation leads to hormonal imbalance and hair fall.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🧘</span><p><strong>Manage stress</strong> — stress is one of the biggest causes of sudden hair shedding (telogen effluvium). Prayer, walks, breathing exercises help.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🚶</span><p><strong>Exercise regularly</strong> — even a 20-minute walk daily improves blood circulation to the scalp and supports hair growth hormones.</p></div>
+        <div class="tip-item"><span class="tip-bullet">☀️</span><p><strong>Sunlight daily</strong> — 15–20 minutes of sun exposure boosts Vitamin D, which is directly tied to hair follicle health.</p></div>
+        <div class="tip-item"><span class="tip-bullet">🚿</span><p><strong>Keep your scalp clean</strong> — a clean, healthy scalp is the foundation. Buildup from products and hard water blocks follicles.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE TABLE -->
+<div class="sec" id="schedule">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-label">✦ Your weekly plan ✦</p>
+      <h2 class="sec-title">Weekly Hair Care<br><em>Schedule</em></h2>
+      <p class="sec-sub">Follow this every week consistently. You will see a visible difference in 4–6 weeks, and major improvement in 3 months.</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="reveal">
+      <div class="schedule">
+        <div class="sch-head"><span>Day</span><span>Hair Task</span><span>Product / Tip</span></div>
+        <div class="sch-row"><div class="sch-day">Monday</div><div class="sch-task">Oil massage + wash<br><small style="color:var(--sage);">Wash Day #1</small></div><div class="sch-prod">Coconut or castor oil<br>Sulphate-free shampoo + conditioner</div></div>
+        <div class="sch-row"><div class="sch-day">Tuesday</div><div class="sch-task">Air dry + light serum on ends<br>Scalp massage 2 mins</div><div class="sch-prod">Argan oil (2–3 drops)<br>Satin pillowcase at night</div></div>
+        <div class="sch-row"><div class="sch-day">Wednesday</div><div class="sch-task">Rest day — no products<br>Loose braid at night</div><div class="sch-prod">Just drink plenty of water<br>Eat eggs + nuts today</div></div>
+        <div class="sch-row"><div class="sch-day">Thursday</div><div class="sch-task">Oil massage + wash<br><small style="color:var(--sage);">Wash Day #2</small></div><div class="sch-prod">Rosemary oil blend or olive oil<br>Scalp massage 10 mins pre-wash</div></div>
+        <div class="sch-row"><div class="sch-day">Friday</div><div class="sch-task">DIY hair mask<br>(every 2nd week)</div><div class="sch-prod">Egg + olive oil OR banana + honey<br>Leave 30–45 mins, cool rinse</div></div>
+        <div class="sch-row"><div class="sch-day">Saturday</div><div class="sch-task">Rest day — gentle detangle<br>Loose braid + satin pillowcase</div><div class="sch-prod">Focus on eating well today<br>Salmon / dal / spinach</div></div>
+        <div class="sch-row"><div class="sch-day">Sunday</div><div class="sch-task">Scalp massage + overnight oil<br>Deep nourish before new week</div><div class="sch-prod">Castor + coconut oil blend<br>Wrap in warm towel or leave overnight</div></div>
+      </div>
+    </div>
+
+    <!-- EXPECTED RESULTS -->
+    <div class="reveal" style="margin-top:40px;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,30px);color:var(--dark);margin-bottom:20px;">What to Expect <em style="font-style:italic;color:var(--green);">Over Time</em></h3>
+      <div class="tracker-grid">
+        <div class="track-card"><div class="track-circle">2W</div><div class="track-label">2 Weeks</div><div class="track-value">Less hair fall, scalp feels healthier</div></div>
+        <div class="track-card"><div class="track-circle">1M</div><div class="track-label">1 Month</div><div class="track-value">Noticeable shine, softer texture, less frizz</div></div>
+        <div class="track-card"><div class="track-circle">2M</div><div class="track-label">2 Months</div><div class="track-value">Hair feels thicker, more volume at roots</div></div>
+        <div class="track-card"><div class="track-circle">3M</div><div class="track-label">3 Months</div><div class="track-value">Visible growth, strong healthy hair overall</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- LOVE MESSAGE CARD -->
+    <div class="reveal" style="margin-top:32px;background:linear-gradient(135deg,#fff9f0,#faf0e8);border-radius:20px;padding:32px;border:1px solid rgba(201,169,110,.2);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-10px;right:16px;font-size:100px;opacity:.04;font-family:Playfair Display,serif;color:#c9a96e;">♥</div>
+      <p style="font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-family:Jost,sans-serif;font-weight:200;margin-bottom:14px;">✦ from Basit, with love ✦</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,3vw,20px);color:var(--dark);line-height:1.9;">
+        &ldquo;Your hair is beautiful, Mevuh — just like everything else about you. But I want you to take care of it because <em style="color:var(--green);">you deserve to feel amazing every single day.</em> This routine is my way of being there with you even when I can't be.&rdquo;
+      </p>
+      <p style="margin-top:14px;font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--sage);">— Basit 🌿</p>
+    </div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="max-width:640px;margin:0 auto;">
+    <div style="font-size:44px;margin-bottom:16px;animation:hbf 1.4s ease-in-out infinite;display:inline-block;">🌿</div>
+    <h2>You Are Worth Every<br>Single Bit of This Care</h2>
+    <p style="margin-top:16px;margin-bottom:8px;">Follow this with patience. Real results take time — just like real love does.</p>
+    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto;"></div>
+    <p style="font-family:Cormorant Garamond,serif;font-style:italic;font-size:clamp(16px,3vw,20px);color:rgba(255,255,255,.7);line-height:1.9;">
+      &ldquo;I hope every time you do this routine, you feel me right there with you — cheering you on, proud of you, completely in love with you.&rdquo;
+    </p>
+    <p style="margin-top:10px;font-family:Playfair Display,serif;font-style:italic;font-size:18px;color:var(--gold);">— Your Basit 💌</p>
+    <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+      <span style="padding:8px 20px;border-radius:30px;border:1px solid rgba(201,169,110,.25);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);">Made with love</span>
+      <span style="padding:8px 20px;border-radius:30px;border:1px solid rgba(201,169,110,.25);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);">From Basit</span>
+      <span style="padding:8px 20px;border-radius:30px;border:1px solid rgba(201,169,110,.25);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);">For Mevuh 🌹</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// NAV scroll
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Scroll reveal
+var obs=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+
+// Floating leaves
+(function(){
+  var wrap=document.getElementById('leaves');
+  var leafSVGs=[
+    '<svg viewBox="0 0 30 50" fill="none"><path d="M15 48 C5 30 2 15 15 2 C28 15 25 30 15 48Z" fill="rgba(122,158,110,VAR)"/></svg>',
+    '<svg viewBox="0 0 40 30" fill="none"><path d="M2 15 C10 2 30 2 38 15 C30 28 10 28 2 15Z" fill="rgba(184,212,168,VAR)"/></svg>',
+    '<svg viewBox="0 0 25 45" fill="none"><path d="M12 43 C3 28 1 14 12 2 C23 14 21 28 12 43Z" fill="rgba(45,90,39,VAR)"/></svg>',
+  ];
+  function spawn(){
+    var l=document.createElement('div');l.className='leaf';
+    var size=20+Math.random()*24;
+    var opacity=0.3+Math.random()*0.4;
+    var svg=leafSVGs[Math.floor(Math.random()*leafSVGs.length)].replace('VAR',(opacity.toFixed(2)));
+    l.innerHTML=svg;
+    l.style.cssText='left:'+Math.random()*100+'%;width:'+size+'px;height:'+size+'px;animation-duration:'+(8+Math.random()*8)+'s;animation-delay:'+(Math.random()*3)+'s;';
+    wrap.appendChild(l);setTimeout(function(){l.remove();},18000);
+  }
+  setInterval(spawn,800);for(var i=0;i<6;i++)spawn();
+})();
+</script>
+</body>
+</html>
